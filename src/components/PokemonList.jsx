@@ -12,6 +12,9 @@ function PokemonList({
   setPreviousUrl,
   url,
   loading,
+  setTotalPokemonCount,
+  setDisplayedPokemonCount,
+  displayPokemonCount
 }) {
   const getPokemon = async () => {
     try {
@@ -26,6 +29,8 @@ function PokemonList({
       setPokemon(pokeInformation);
       setNextUrl(response.data.next);
       setPreviousUrl(response.data.previous);
+      setTotalPokemonCount(response.data.count)
+      // setDisplayedPokemonCount(pokeInformation.length)
     } catch (error) {
       console.log(error);
     } finally {
