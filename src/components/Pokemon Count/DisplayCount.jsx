@@ -3,8 +3,7 @@ import React from "react";
 const DisplayCount = ({
   displayedPokemonCount,
   totalPokemonCount,
-  loading,
-  nextUrl
+  loading
 }) => {
   return (
     <div>

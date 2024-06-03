@@ -2,12 +2,26 @@ import React, { useState } from "react";
 import { TbPokeball, TbPokeballOff } from "react-icons/tb";
 import Logo from "./Logo";
 import Nav from "./Nav";
-import SearchButton from "./SearchButton";
-export default function Header({ loading, toggleSearch, search }) {
+import SearchButton from "./Search Bar/SearchButton";
+export default function Header({
+  loading,
+  search,
+  setSearchBarVisibility,
+  searchBarVisibility,
+  setSearchInput,
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  /**
+   * The function `toggleSearch` toggles the visibility of a search bar and clears the search input.
+   */
+  const toggleSearch = () => {
+    setSearchBarVisibility(!searchBarVisibility);
+    setSearchInput("");
   };
 
   return (
@@ -21,8 +35,10 @@ export default function Header({ loading, toggleSearch, search }) {
               <TbPokeball className="text-white w-5 h-5" />
             )}
           </button>
+
           {/* Logo */}
           <Logo />
+
           {/* Navigation Links */}
           <div
             className={`md:block transition-all duration-300 ease-in-out overflow-hidden ${
@@ -31,6 +47,7 @@ export default function Header({ loading, toggleSearch, search }) {
           >
             <Nav />
           </div>
+
           {/* Search Bar */}
           <div className="z-20">
             <SearchButton showSearchBar={toggleSearch} isOpen={search} />

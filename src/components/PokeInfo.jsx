@@ -1,19 +1,30 @@
-import React, { useState } from "react";
-import { capitilizeFirstLetter } from "./PokemonList";
-import ImageLoader from "./ImageLoader";
+import React from "react";
+import CapitilizeFirstLetter from "./helpers/CapitilizeFirstLetter";
+import ImageLoader from "./helpers/ImageLoader";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import SearchBar_Mobile_Version from "./Head/SearchBar_Mobile_Version";
+import SearchResults from "./Head/Search Bar/SearchResults";
 export default function Pokeinfo({
-  pokemonData,
   pokemon,
   loading,
   searchBar,
-  totalPokemonCount,
+  setSearchInput,
+  setFilteredSearch,
+  searchInput,
+  filteredSearch,
+  allPokemons,
 }) {
   return (
     <div className="relative flex justify-center">
-      {searchBar && <SearchBar_Mobile_Version />}
+      {searchBar && (
+        <SearchResults
+          setSearchInput={setSearchInput}
+          setFilteredSearch={setFilteredSearch}
+          allPokemons={allPokemons}
+          searchInput={searchInput}
+          filteredSearch={filteredSearch}
+        />
+      )}
       {loading ? (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -36,9 +47,11 @@ export default function Pokeinfo({
                   className="flex flex-1 mb-1"
                   src={poke.sprites.front_default}
                   alt={poke.name}
+                  Height={48}
+                  Width={48}
                 />
 
-                <div className="">{capitilizeFirstLetter(poke.name)}</div>
+                <div className="">{CapitilizeFirstLetter(poke.name)}</div>
               </li>
             );
           })}

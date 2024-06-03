@@ -1,20 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-const capitilizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.substring(1);
-};
+import FetchAllPokemon from "./FetchAllPokemonForSearchResults";
 
 function PokemonList({
   setPokemon,
   setLoading,
-  setPokemonData,
   setNextUrl,
   setPreviousUrl,
   url,
-  loading,
   setTotalPokemonCount,
-  setDisplayedPokemonCount,
-  displayPokemonCount
+  setAllPokemons,
 }) {
   const getPokemon = async () => {
     try {
@@ -29,8 +24,7 @@ function PokemonList({
       setPokemon(pokeInformation);
       setNextUrl(response.data.next);
       setPreviousUrl(response.data.previous);
-      setTotalPokemonCount(response.data.count)
-      // setDisplayedPokemonCount(pokeInformation.length)
+      setTotalPokemonCount(response.data.count);
     } catch (error) {
       console.log(error);
     } finally {
@@ -41,6 +35,12 @@ function PokemonList({
   useEffect(() => {
     getPokemon();
   }, [url]);
+
+  return (
+    <div>
+      <FetchAllPokemon setAllPokemons={setAllPokemons} />
+    </div>
+  );
 }
-export { capitilizeFirstLetter };
+
 export default PokemonList;
