@@ -5,7 +5,6 @@ import Nav from "./Nav";
 import SearchButton from "./Search Bar/SearchButton";
 export default function Header({
   loading,
-  search,
   setSearchBarVisibility,
   searchBarVisibility,
   setSearchInput,
@@ -25,7 +24,8 @@ export default function Header({
   };
 
   return (
-    <nav className="relative bg-gray-800 shadow-lg p-0">
+    <div className="sticky top-0 z-10 overflow-x-hidden">
+    <nav className=" bg-gray-800 shadow-lg p-0 w-screen">
       {!loading ? (
         <div className="flex flex-col md:flex-row md:mx-auto md:justify-between md:items-center">
           <button className="absolute top-7 left-2 md:hidden" onClick={toggle}>
@@ -49,11 +49,12 @@ export default function Header({
           </div>
 
           {/* Search Bar */}
-          <div className="z-20">
-            <SearchButton showSearchBar={toggleSearch} isOpen={search} />
+          <div className="z-30">
+            <SearchButton showSearchBar={toggleSearch} />
           </div>
         </div>
       ) : null}
     </nav>
+    </div>
   );
 }

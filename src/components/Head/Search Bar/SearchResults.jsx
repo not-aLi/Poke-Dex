@@ -7,6 +7,8 @@ const SearchResults = ({
   allPokemons,
   searchInput,
   filteredSearch,
+  setSearchBarVisibility,
+  searchBarVisibility
 }) => {
   /**
    * The handleSearch function filters a list of Pokemon based on a search input value and updates the
@@ -49,6 +51,14 @@ search results. Here's a breakdown of what it does: */
       </>
     );
   };
+
+  /**
+   * The function `toggleSearch` toggles the visibility of a search bar and clears the search input.
+   */
+  const toggleSearch = () => {
+    setSearchBarVisibility(!searchBarVisibility);
+    clearInput();
+  };
   return (
     <div>
       <SearchBar
@@ -57,6 +67,7 @@ search results. Here's a breakdown of what it does: */
         filteredSearch={filteredSearch}
         clearInput={clearInput}
         highlightSearchResult={highlightSearchResult}
+        toggleSearch={toggleSearch}
       />
     </div>
   );

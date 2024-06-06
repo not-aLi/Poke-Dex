@@ -5,11 +5,11 @@ const SearchBar_Mobile_Version = ({
   searchInput,
   handleSearch,
   filteredSearch,
-  clearInput,
-  highlightSearchResult
+  highlightSearchResult,
+  toggleSearch
 }) => {
   return (
-    <div className="fixed inset-0 flex justify-center items-center z-10 bg-black bg-opacity-75 backdrop-blur-md">
+    <div className="fixed inset-0 flex justify-center items-center z-20 bg-black bg-opacity-75 backdrop-blur-md">
       <div className="relative flex shrink bg-black p-2 rounded-lg backdrop-blur-3xl">
         <input
           type="text"
@@ -31,7 +31,7 @@ const SearchBar_Mobile_Version = ({
                   key={index}
                   className="flex justify-between items-center p-4 px-2 my-2 hover:bg-gray-700 cursor-pointer"
                 >
-                  <p className=" text-slate-200 ">{highlightSearchResult(poke.name)}</p>
+                  <p className=" text-slate-200 tracking-wide">{highlightSearchResult(poke.name)}</p>
 
                   <span className="h-12 w-12 text-center text-xs text-white">
                     <ImageLoader
@@ -48,12 +48,11 @@ const SearchBar_Mobile_Version = ({
         )}
         <button
           className="ml-2 text-white fixed right-3 text-center my-2 md:my-0"
-          onClick={clearInput}
+          onClick={toggleSearch}
         >
-          <IoCloseCircle className="text-black  w-6 h-6 md:w-10 md:h-10" />
+          <IoCloseCircle className="text-black  w-6 h-6 md:w-10 md:h-10 hover:text-red-700" />
         </button>
       </div>
-      .
     </div>
   );
 };
