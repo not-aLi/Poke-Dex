@@ -1,6 +1,7 @@
 import React from "react";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
-function Pagination({ previousButton, nextButton, loading }) {
+
+const Pagination = ({ previousButton, nextButton, loading }) => {
   return (
     <div className="flex justify-center content-center mt-10 mb-10">
       {previousButton && !loading ? (
@@ -23,6 +24,6 @@ function Pagination({ previousButton, nextButton, loading }) {
       ) : null}
     </div>
   );
-}
+};
 
 export default Pagination;

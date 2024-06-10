@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PokemonContext } from "../States/StateContext";
 
-const DisplayCount = ({
-  displayedPokemonCount,
-  totalPokemonCount,
-  loading
-}) => {
+const DisplayCount = () => {
+  const { displayedPokemonCount, totalPokemonCount, loading } =
+    useContext(PokemonContext);
+
   return (
     <div>
       {!loading ? (

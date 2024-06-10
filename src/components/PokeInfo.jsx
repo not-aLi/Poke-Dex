@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import CapitilizeFirstLetter from "./helpers/CapitilizeFirstLetter";
 import ImageLoader from "./helpers/ImageLoader";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import SearchResults from "./Head/Search Bar/SearchResults";
-export default function Pokeinfo({
-  pokemon,
-  loading,
-  searchBar,
-  setSearchInput,
-  setFilteredSearch,
-  searchInput,
-  filteredSearch,
-  allPokemons,
-  setSearchBarVisibility,
-  searchBarVisibility
-}) {
+import { PokemonContext } from "./States/StateContext";
+
+export default function Pokeinfo() {
+  const {
+    pokemon,
+    loading,
+    setSearchInput,
+    setFilteredSearch,
+    searchInput,
+    filteredSearch,
+    allPokemons,
+    setSearchBarVisibility,
+    searchBarVisibility,
+  } = useContext(PokemonContext);
+
   return (
     <div className="relative flex justify-center">
-      {searchBar && (
+      {searchBarVisibility && (
         <SearchResults
           setSearchInput={setSearchInput}
           setFilteredSearch={setFilteredSearch}

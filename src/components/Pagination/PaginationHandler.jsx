@@ -1,5 +1,6 @@
 import React from "react";
 import Pagination from "./PaginationLayout";
+
 const PaginationHandler = ({
   setUrl,
   nextUrl,

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import PaginationHandler from "../Pagination/PaginationHandler";
-const UpdatePokemonCount = ({
-  setDisplayedPokemonCount,
-  pokemon,
-  setUrl,
-  loading,
-  previousUrl,
-  nextUrl,
-}) => {
+import { PokemonContext } from "../States/StateContext";
+const UpdatePokemonCount = () => {
+  const {
+    setDisplayedPokemonCount,
+    pokemon,
+    setUrl,
+    loading,
+    previousUrl,
+    nextUrl,
+  } = useContext(PokemonContext);
+
   const updateDisplayedPokemonCount = (operation) => {
     setDisplayedPokemonCount((prevCount) => {
       if (operation === "increment") {

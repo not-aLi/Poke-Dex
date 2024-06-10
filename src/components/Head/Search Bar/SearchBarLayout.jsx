@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IoCloseCircle } from "react-icons/io5";
 import ImageLoader from "../../helpers/ImageLoader";
+
 const SearchBar_Mobile_Version = ({
-  searchInput,
   handleSearch,
+  searchInput,
   filteredSearch,
   highlightSearchResult,
-  toggleSearch
+  toggleSearch,
 }) => {
   return (
     <div className="fixed inset-0 flex justify-center items-center z-20 bg-black bg-opacity-75 backdrop-blur-md">
@@ -31,7 +32,9 @@ const SearchBar_Mobile_Version = ({
                   key={index}
                   className="flex justify-between items-center p-4 px-2 my-2 hover:bg-gray-700 cursor-pointer"
                 >
-                  <p className=" text-slate-200 tracking-wide">{highlightSearchResult(poke.name)}</p>
+                  <p className=" text-slate-200 tracking-wide">
+                    {highlightSearchResult(poke.name)}
+                  </p>
 
                   <span className="h-12 w-12 text-center text-xs text-white">
                     <ImageLoader

@@ -1,6 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { PokemonContext } from "../States/StateContext";
 
-const PokemonOnScreen = ({ setUrl }) => {
+const PokemonOnScreen = () => {
+  const { setUrl } = useContext(PokemonContext);
+
   const pokemonNumbers = () => {
     const width = window.innerWidth;
     if (width < 640) {

@@ -1,16 +1,19 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FetchAllPokemon from "./FetchAllPokemonForSearchResults";
+import { PokemonContext } from "../States/StateContext";
 
-function PokemonList({
-  setPokemon,
-  setLoading,
-  setNextUrl,
-  setPreviousUrl,
-  url,
-  setTotalPokemonCount,
-  setAllPokemons,
-}) {
+const FetchPokemon = () => {
+  const {
+    setPokemon,
+    setLoading,
+    setNextUrl,
+    setPreviousUrl,
+    url,
+    setTotalPokemonCount,
+    setAllPokemons,
+  } = useContext(PokemonContext);
+
   const getPokemon = async () => {
     try {
       setLoading(true);
@@ -41,6 +44,6 @@ function PokemonList({
       <FetchAllPokemon setAllPokemons={setAllPokemons} />
     </div>
   );
-}
+};
 
-export default PokemonList;
+export default FetchPokemon;

@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import SearchBar from "./SearchBarLayout";
-import CapitilizeFirstLetter from "../../helpers/CapitilizeFirstLetter";
-const SearchResults = ({
-  setSearchInput,
-  setFilteredSearch,
-  allPokemons,
-  searchInput,
-  filteredSearch,
-  setSearchBarVisibility,
-  searchBarVisibility
-}) => {
+import { PokemonContext } from "../../States/StateContext";
+
+const SearchResults = () => {
+  const {
+    setSearchInput,
+    setFilteredSearch,
+    allPokemons,
+    searchInput,
+    filteredSearch,
+    setSearchBarVisibility,
+    searchBarVisibility,
+  } = useContext(PokemonContext);
   /**
    * The handleSearch function filters a list of Pokemon based on a search input value and updates the
    * filtered search results.
@@ -17,6 +19,7 @@ const SearchResults = ({
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();
     setSearchInput(searchValue);
+    console.log(searchValue)
     const filteredData = allPokemons.filter((poke) =>
       poke.name.toLowerCase().includes(searchValue)
     );

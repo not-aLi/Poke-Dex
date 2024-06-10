@@ -1,7 +1,10 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { PokemonContext } from "../States/StateContext";
 
-function FetchAllPokemon({ setAllPokemons }) {
+function FetchAllPokemon() {
+  const { setAllPokemons } = useContext(PokemonContext);
+
   const getPokemon = async () => {
     try {
       let response = await axios.get(
@@ -28,5 +31,7 @@ function FetchAllPokemon({ setAllPokemons }) {
   useEffect(() => {
     getPokemon();
   }, []);
+
+  return null;
 }
 export default FetchAllPokemon;
