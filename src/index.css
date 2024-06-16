@@ -25,3 +25,12 @@ body {
 .Loader{
     border-top-color: #3498db;
 }
+
+@media (max-width: 896px) and (min-width: 760px) {
+    .md\:ml-4 {
+      margin-left: 1rem; 
+    }
+    .md\:w-1\/2 {
+      width: 50%;
+    }
+  }

@@ -1,5 +1,5 @@
 import React from "react";
-import Pagination from "./PaginationLayout";
+import Pagination from "../Layouts/PaginationLayout";
 
 const PaginationHandler = ({
   setUrl,

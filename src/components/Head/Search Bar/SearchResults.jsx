@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import SearchBar from "./SearchBarLayout";
+import SearchBar from "../../Layouts/SearchBarLayout";
 import { PokemonContext } from "../../States/StateContext";
 
 const SearchResults = () => {
@@ -19,7 +19,6 @@ const SearchResults = () => {
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();
     setSearchInput(searchValue);
-    console.log(searchValue)
     const filteredData = allPokemons.filter((poke) =>
       poke.name.toLowerCase().includes(searchValue)
     );
@@ -31,6 +30,14 @@ const SearchResults = () => {
    */
   const clearInput = () => {
     setSearchInput("");
+  };
+
+  /**
+   * The function `handleCloseSearchBar` sets the search bar visibility to false and clears the input.
+   */
+  const handleCloseSearchBar = () => {
+    setSearchBarVisibility(false);
+    clearInput();
   };
 
   /* The `highlightSearchResult` function is responsible for highlighting the search input within the
@@ -71,6 +78,7 @@ search results. Here's a breakdown of what it does: */
         clearInput={clearInput}
         highlightSearchResult={highlightSearchResult}
         toggleSearch={toggleSearch}
+        handleCloseSearchBar={handleCloseSearchBar}
       />
     </div>
   );

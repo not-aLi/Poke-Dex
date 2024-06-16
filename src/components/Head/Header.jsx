@@ -28,8 +28,8 @@ export default function Header() {
   };
 
   return (
-    <div className="sticky top-0 z-10 overflow-x-hidden">
-      <nav className=" bg-gray-800 shadow-lg p-0 w-screen">
+    <div className="sticky top-0 z-30 overflow-hidden ">
+      <nav className=" bg-gray-800 shadow-xl p-0 w-screen">
         {!loading ? (
           <div className="flex flex-col md:flex-row md:mx-auto md:justify-between md:items-center">
             <button

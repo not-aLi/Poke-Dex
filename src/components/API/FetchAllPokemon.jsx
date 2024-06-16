@@ -11,7 +11,6 @@ const FetchPokemon = () => {
     setPreviousUrl,
     url,
     setTotalPokemonCount,
-    setAllPokemons,
   } = useContext(PokemonContext);
 
   const getPokemon = async () => {
@@ -41,7 +40,7 @@ const FetchPokemon = () => {
 
   return (
     <div>
-      <FetchAllPokemon setAllPokemons={setAllPokemons} />
+      <FetchAllPokemon />
     </div>
   );
 };

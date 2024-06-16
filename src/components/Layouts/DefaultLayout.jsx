@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../Head/Header";
-import UpdatePokemonCount from "../Pokemon Count/UpdatePokemonCount";
-import DisplayCount from "../Pokemon Count/DisplayCount";
-import FetchAllPokemon from "../Fetch Data from API/FetchAllPokemon";
+import SearchResults from "../Head/Search Bar/SearchResults";
+import { PokemonContext } from "../States/StateContext";
+
 const DefaultLayout = ({ children }) => {
+  const { searchBarVisibility } = useContext(PokemonContext);
   return (
     <div>
       <Header />
-      <FetchAllPokemon />
-      <DisplayCount />
+      {searchBarVisibility && <SearchResults />}
       {children}
-      <UpdatePokemonCount />
     </div>
   );
 };

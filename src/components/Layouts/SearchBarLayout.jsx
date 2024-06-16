@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { IoCloseCircle } from "react-icons/io5";
-import ImageLoader from "../../helpers/ImageLoader";
+import ImageLoader from "../helpers/ImageLoader";
+import { Link } from "react-router-dom";
 
 const SearchBar_Mobile_Version = ({
   handleSearch,
@@ -8,9 +9,10 @@ const SearchBar_Mobile_Version = ({
   filteredSearch,
   highlightSearchResult,
   toggleSearch,
+  handleCloseSearchBar,
 }) => {
   return (
-    <div className="fixed inset-0 flex justify-center items-center z-20 bg-black bg-opacity-75 backdrop-blur-md">
+    <div className="fixed inset-0 flex justify-center items-center z-30 bg-black bg-opacity-75 backdrop-blur-md">
       <div className="relative flex shrink bg-black p-2 rounded-lg backdrop-blur-3xl">
         <input
           type="text"
@@ -28,22 +30,24 @@ const SearchBar_Mobile_Version = ({
               </div>
             ) : (
               filteredSearch.map((poke, index) => (
-                <div
-                  key={index}
-                  className="flex justify-between items-center p-4 px-2 my-2 hover:bg-gray-700 cursor-pointer"
-                >
-                  <p className=" text-slate-200 tracking-wide">
-                    {highlightSearchResult(poke.name)}
-                  </p>
+                <div key={index} onClick={handleCloseSearchBar}>
+                  <Link
+                    to={`/pokemon/${poke.name}`}
+                    className="flex justify-between items-center p-4 px-2 my-2 hover:bg-gray-700 cursor-pointer"
+                  >
+                    <p className=" text-slate-200 tracking-wide">
+                      {highlightSearchResult(poke.name)}
+                    </p>
 
-                  <span className="h-12 w-12 text-center text-xs text-white">
-                    <ImageLoader
-                      src={poke.sprites.front_default}
-                      alt={poke.name}
-                      Height={30}
-                      Width={30}
-                    />
-                  </span>
+                    <span className="h-12 w-12 text-center text-xs text-white">
+                      <ImageLoader
+                        src={poke.sprites.front_default}
+                        alt={poke.name}
+                        Height={30}
+                        Width={30}
+                      />
+                    </span>
+                  </Link>
                 </div>
               ))
             )}

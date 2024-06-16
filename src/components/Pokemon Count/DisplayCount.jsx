@@ -8,7 +8,7 @@ const DisplayCount = () => {
   return (
     <div>
       {!loading ? (
-        <div className="flex justify-center items-center text-white bg-gray-800 border-b-2 p-2 border-b-gray-800">
+        <div className="flex justify-center items-center text-white bg-gray-800 bg-opacity-75 p-2 border-t-2 border-gray-800 border-opacity-90">
           <p>
             Showing{" "}
             <span className="text-yellow-400">{displayedPokemonCount}</span> out
