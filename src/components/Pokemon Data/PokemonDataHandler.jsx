@@ -14,10 +14,9 @@ const PokemonDataHandler = () => {
     setIsShiny,
     setSpeciesData,
     setEvolutionChain,
-    setAbilityEffect
+    setAbilityEffect,
+    setMovesData,
   } = useContext(PokemonContext);
-
- 
 
   const findPokemon = async () => {
     const pokemonFound = allPokemons.find(
@@ -31,7 +30,7 @@ const PokemonDataHandler = () => {
         const response = await axios.get(pokemonFound.species.url);
         const specie = response.data;
         setSpeciesData(specie);
-       
+
         // fetching Evolution Data
         const species_Response = await axios.get(specie.evolution_chain.url);
         const evolution = species_Response.data;
@@ -44,6 +43,20 @@ const PokemonDataHandler = () => {
         const ability_Response = await Promise.all(ability_Promise);
         const ability_Data = ability_Response.map((response) => response.data);
         setAbilityEffect(ability_Data);
+
+        // fetching Moves Data
+        const moves_Promise = pokemonFound.moves
+          .filter((move) => move.move.url)
+          .map((move) =>
+            axios.get(move.move.url).catch((err) => ({ error: err, move }))
+          );
+
+        const moves_Response = await Promise.all(moves_Promise);
+        const moves_Data = moves_Response
+          .filter((response) => !response.error)
+          .map((response) => response.data);
+
+        setMovesData(moves_Data);
       }
     } catch (error) {
       console.log(error);
@@ -58,7 +71,7 @@ const PokemonDataHandler = () => {
   }
   return (
     <div>
-      <PokemonDataLayout/>
+      <PokemonDataLayout />
     </div>
   );
 };

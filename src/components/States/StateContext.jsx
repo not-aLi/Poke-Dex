@@ -23,6 +23,8 @@ const PokemonProvider = ({ children }) => {
   const [abilityDetailBox, setAbilityDetailBox] = useState(false);
   const [abilityEffect, setAbilityEffect] = useState(null);
   const [currentAbilityIndex, setCurrentAbilityIndex] = useState(null);
+  const [movesData, setMovesData] = useState(null);
+
 
   return (
     <PokemonContext.Provider
@@ -66,7 +68,9 @@ const PokemonProvider = ({ children }) => {
         abilityEffect,
         setAbilityEffect,
         currentAbilityIndex,
-        setCurrentAbilityIndex
+        setCurrentAbilityIndex,
+        movesData,
+        setMovesData
       }}
     >
       {children}

@@ -9,15 +9,18 @@ import AboutHandler from "../Pokemon Data/Logics/AboutHandler";
 import AbilitiesHandler from "../Pokemon Data/Logics/AbilitiesHandler";
 import BaseStats from "../Pokemon Data/Sub Layouts/BaseStats";
 import AdditionalInformation from "../Pokemon Data/Sub Layouts/AdditionalInformation";
+import EvolutionChainHandler from "../Pokemon Data/Logics/EvolutionChainHandler";
+import MovesHandler from "../Pokemon Data/Logics/MovesHandler";
+import FormsHandler from "../Pokemon Data/Logics/FormsHandler";
 import DefaultLayout from "./DefaultLayout";
 
-const PokemonDataLayout = ({}) => {
+const PokemonDataLayout = () => {
   const { pokemonInfo } = useContext(PokemonContext);
 
   return (
     <DefaultLayout>
-      <div className="min-h-screen min-w-screen flex items-center flex-col md:items-center xl:items-start overflow-hidden">
-        {/* Section for Image and Name */}
+      <div className="min-h-screen min-w-screen flex items-center flex-col md:items-center  overflow-hidden">
+        {/* Section for Image, Name, Buttons, About and Type */}
         {pokemonInfo && (
           <div className="flex flex-col md:flex-row items-center mt-4 p-2 m-4">
             {/* Pokemon Image */}
@@ -26,7 +29,6 @@ const PokemonDataLayout = ({}) => {
 
               {/* Section for Add to Favorites and Shiny Buttons */}
               <div className="flex items-center justify-center gap-8">
-
                 {/* Add-To-Favorites Button */}
                 <FavoriteButtonHandler />
 
@@ -37,7 +39,6 @@ const PokemonDataLayout = ({}) => {
 
             {/* Pokemon Name and Type Section */}
             <div className="flex flex-wrap items-center flex-col">
-
               {/* Pokemon Name */}
               <Name />
 
@@ -53,7 +54,6 @@ const PokemonDataLayout = ({}) => {
         {/* Abilities ,Base Stats and Additional Info Section */}
         {pokemonInfo && (
           <div className=" flex md:flex-row flex-col flex-wrap ">
-
             {/* Abilities */}
             <AbilitiesHandler />
 
@@ -61,8 +61,27 @@ const PokemonDataLayout = ({}) => {
             <BaseStats />
 
             {/* Additional Info */}
-            <AdditionalInformation/>
+            <AdditionalInformation />
+          </div>
+        )}
+        {/* Evolution Chain Section */}
+        {pokemonInfo && (
+          <div className="flex flex-row justify-center items-center">
+            <EvolutionChainHandler />
+          </div>
+        )}
 
+        {/* Moves Section */}
+        {pokemonInfo && (
+          <div>
+            <MovesHandler />
+          </div>
+        )}
+
+        {/* Forms Section */}
+        {pokemonInfo && (
+          <div>
+            <FormsHandler />
           </div>
         )}
       </div>
