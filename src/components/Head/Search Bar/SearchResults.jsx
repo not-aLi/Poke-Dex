@@ -17,13 +17,15 @@ const SearchResults = () => {
    * filtered search results.
    */
   const handleSearch = (e) => {
-    const searchValue = e.target.value.toLowerCase();
-    setSearchInput(searchValue);
+  const searchValue = e.target.value ? e.target.value.toLowerCase() : '';
+  setSearchInput(searchValue);
+  if (allPokemons && allPokemons.length > 0) {
     const filteredData = allPokemons.filter((poke) =>
-      poke.name.toLowerCase().includes(searchValue)
+      poke.name ? poke.name.toLowerCase().includes(searchValue) : false
     );
     setFilteredSearch(filteredData);
-  };
+  }
+};
 
   /**
    * The function `clearInput` clears the search input by setting it to an empty string.
