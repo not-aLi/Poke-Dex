@@ -16,14 +16,25 @@ const SearchResults = () => {
    * The handleSearch function filters a list of Pokemon based on a search input value and updates the
    * filtered search results.
    */
-const handleSearch = (e) => {
-    const searchValue = e.target.value.toLowerCase();
-    setSearchInput(searchValue);
-    const filteredData = allPokemons.filter((poke) =>
-      poke.name.toLowerCase().includes(searchValue)
-    );
-    setFilteredSearch(filteredData);
+  const handleSearch = (e) => {
+    try {
+      const searchValue = e.target.value.toLowerCase();
+      setSearchInput(searchValue);
+  
+      const filteredData = (allPokemons || []).filter((poke) => {
+        if (!poke.name) {
+          console.warn('Undefined name:', poke);
+          return false;
+        }
+        return poke.name.toLowerCase().includes(searchValue);
+      });
+  
+      setFilteredSearch(filteredData);
+    } catch (error) {
+      console.error('Error during search:', error);
+    }
   };
+  
 
   /**
    * The function `clearInput` clears the search input by setting it to an empty string.
