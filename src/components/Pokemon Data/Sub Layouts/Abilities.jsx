@@ -47,7 +47,7 @@ const Abilities = ({ toggleAbilityDetailBox, renderTypeColor }) => {
               : "md:max-h-40 block md:opacity-100"
           }`}
         >
-          <div className="md:z-40  text-white p-4 m-6 max-w-full md:w-80 flex-wrap flex items-center flex-1 rounded-lg bg-slate-600 shadow-lg">
+          <div className="md:z-40  text-white p-4 m-6 max-w-full md:w-80 flex-wrap flex items-center flex-1 rounded-lg bg-slate-600 shadow-lg max-h-44 overflow-y-auto">
             <h1 className="text-2xl font-semibold mb-2">About Ability:</h1>{" "}
             <p>
               {currentAbilityIndex !== null &&
