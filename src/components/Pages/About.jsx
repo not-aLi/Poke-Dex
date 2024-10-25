@@ -32,7 +32,7 @@ const About = () => {
             <ul className="list-disc list-inside leading-relaxed">
               <li>
                 <strong>Search Capabilities</strong>: Quickly locate your
-                preferred Pokémon by either name or number.
+                preferred Pokémon by name.
               </li>
               <li>
                 <strong>Complete Details</strong>: Get access to each Pokémon's
