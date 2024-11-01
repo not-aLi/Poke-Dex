@@ -6,13 +6,12 @@ import NotFound from "./NotFound";
 import PokemonDataPage from "../Pages/PokemonDataPage";
 import About from "../Pages/About";
 import Authentication from "../User Authentication/Authentication";
-import OTP from "../User Authentication/Reset Password/OTP/OTP";
 
 const Routing = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<OTP/>}/>
+        <Route path="/" element={<Authentication/>}/>
         <Route path="/homePage" element={<HomePage />} />
         <Route path="/pokemon/:name" element={<PokemonDataPage/>}/>
         <Route path="/favorites" element={<Favorites />} />

@@ -3,7 +3,7 @@ import fire from "../../../assets/charmander.gif";
 import ghost from "../../../assets/gastly.gif";
 import Button from "../Button";
 
-const ResetPasswordLayout = ({ email, handleEmail }) => {
+const ForgotPasswordLayout = ({ email, handleEmail }) => {
   return (
     <div className="mt-2 mb-2">
       {/* Input Fields */}
@@ -31,4 +31,4 @@ const ResetPasswordLayout = ({ email, handleEmail }) => {
   );
 };
 
-export default ResetPasswordLayout;
+export default ForgotPasswordLayout;

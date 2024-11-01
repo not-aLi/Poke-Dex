@@ -3,7 +3,7 @@ import pokeball from "../../assets/PokeballBg.png";
 import { motion } from "framer-motion";
 import Login from "./Login/Login";
 import Signup from "./Sign Up/Signup";
-import ResetPassword from "./Reset Password/ResetPassword";
+import ForgotPassword from "./Forgot Password/ForgotPassword";
 const Authentication = () => {
   const [active, setActive] = useState("login");
 
@@ -56,7 +56,15 @@ const Authentication = () => {
       </span>
 
       {/* Auth Box */}
-      <div className="bg-gray-800  flex-col p-2 w-full sm:w-3/4 md:w-1/2 lg:w-1/3 h-auto min-h-36 shadow-sm border border-gray-700 rounded-md flex items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8}}
+        animate={{ opacity: 1, scale: 1}}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+        }}
+        className="bg-gray-800  flex-col p-2 w-full sm:w-3/4 md:w-1/2 lg:w-1/3 h-auto min-h-36 shadow-sm border border-gray-700 rounded-md flex items-center justify-center"
+      >
         <div className="flex flex-col w-full px-4 justify-start items-start gap-3">
           {/* Heading */}
           <h1 className="text-yellow-500 md:text-3xl text-2xl text-left font-bold">
@@ -64,7 +72,7 @@ const Authentication = () => {
           </h1>
 
           <motion.h2
-            key={active} // ensures each message transition is unique
+            key={active} 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
@@ -124,10 +132,10 @@ const Authentication = () => {
           ) : active === "signup" ? (
             <Signup />
           ) : active === "forgot" ? (
-            <ResetPassword />
+            <ForgotPassword />
           ) : null}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

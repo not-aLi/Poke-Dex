@@ -4,7 +4,6 @@ import ghost from "../../../assets/gastly.gif";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 import Button from "../Button";
 import { GiCheckMark } from "react-icons/gi";
-import { RxCross2 } from "react-icons/rx";
 
 const SignupLayout = ({
   isShowing,

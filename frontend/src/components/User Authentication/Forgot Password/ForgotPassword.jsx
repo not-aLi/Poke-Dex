@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ResetPasswordLayout from "./ResetPasswordLayout";
+import ForgotPasswordLayout from "./ForgotPasswordLayout";
 
-const ResetPassword = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
 
   const handleEmail = (e) => {
@@ -10,9 +10,9 @@ const ResetPassword = () => {
   };
   return (
     <div>
-      <ResetPasswordLayout email={email} handleEmail={handleEmail} />
+      <ForgotPasswordLayout email={email} handleEmail={handleEmail} />
     </div>
   );
 };
 
-export default ResetPassword;
+export default ForgotPassword;

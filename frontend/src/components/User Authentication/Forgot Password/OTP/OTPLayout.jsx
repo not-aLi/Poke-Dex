@@ -39,7 +39,15 @@ const OTPLayout = ({
       </span>
 
       {/* Auth Box */}
-      <div className="bg-gray-800 flex-col p-2 w-full sm:w-3/4 md:w-1/2 lg:w-1/3 h-auto min-h-36 shadow-sm border border-gray-700 rounded-md flex items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+        }}
+        className="bg-gray-800 flex-col p-2 w-full sm:w-3/4 md:w-1/2 lg:w-1/3 h-auto min-h-36 shadow-sm border border-gray-700 rounded-md flex items-center justify-center"
+      >
         <div className="flex flex-col w-full px-4 justify-center items-center gap-3">
           {/* Heading */}
           <h1 className="text-yellow-500 md:text-3xl text-2xl text-left font-bold">
@@ -78,7 +86,7 @@ const OTPLayout = ({
             txtColor={"black"}
           />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
