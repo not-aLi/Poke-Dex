@@ -50,7 +50,7 @@ const DisplayCount = () => {
             <div className="hidden w-52 min-h-[130px] z-20 bg-gradient-to-b from-gray-800 to-gray-950 border border-gray-700 rounded-lg shadow-lg absolute right-[45px] top-20 p-4 md:flex flex-col justify-between items-start gap-4">
               <div className="text-white font-medium ">
                 <span className="font-semibold text-gray-400">Account: </span>
-                {user.name}
+                {isGuest ? "Guest" : user.name}
               </div>
 
               {authLoading ? (

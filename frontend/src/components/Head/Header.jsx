@@ -74,7 +74,7 @@ export default function Header() {
               {/* User Avatar */}
               <button
                 onClick={avatarToggle}
-                className="hidden md:flex mr-10 hover:bg-opacity-75 hover:rounded-full hover:transition-all hover:bg-white p-1 justify-center items-center"
+                className={`hidden md:flex mr-10 hover:bg-opacity-75 hover:rounded-full hover:transition-all hover:bg-white ${isGuest?"p-2":"p-1"} justify-center items-center`}
               >
                 {isGuest ? (
                   <img src={pikachu} alt="pikachu" className="size-8" />

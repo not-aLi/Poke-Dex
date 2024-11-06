@@ -13,7 +13,7 @@ export default function Nav() {
   const { isGuest, user, authLoading, logout } = useContext(PokemonContext);
   const navigate = useNavigate();
 
-  const handleLogout = async()=>{
+  const handleLogout = async () => {
     try {
       const response = await logout();
       toast.success(response?.data?.message || "Logout successfully");
@@ -22,7 +22,7 @@ export default function Nav() {
       console.log(error.message);
       toast.error(error.message);
     }
-  }
+  };
 
   return (
     <div>
@@ -82,14 +82,18 @@ export default function Nav() {
               />
             </div>
           ) : (
-            <button disabled={isGuest} onClick={handleLogout} className="flex-1 mx-4">
+            <button
+              disabled={isGuest}
+              onClick={handleLogout}
+              className="flex-1 mx-4"
+            >
               <Button text={"Logout"} color={"normal"} img={normal} />
             </button>
           )}
 
           {/* Username */}
           <span className="text-white text-base font-medium whitespace-nowrap">
-            {user.name}
+            {isGuest ? "Guest" : user.name}
           </span>
         </div>
       </ul>

@@ -17,6 +17,7 @@ const LoginLayout = ({
   handleLogin,
   isFocused,
   setIsFocused,
+  GuestAccount
 }) => {
   return (
     <div className="mt-2 mb-2">
@@ -71,7 +72,9 @@ const LoginLayout = ({
         )}
 
         {/* Guest Button */}
+        <div onClick={GuestAccount} className="w-full">
         <Button color={"purple"} img={ghost} text={"Continue as Guest"} />
+        </div>
       </div>
     </div>
   );

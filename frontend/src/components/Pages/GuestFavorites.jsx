@@ -6,10 +6,10 @@ import ImageLoader from "../helpers/ImageLoader";
 import CapitilizeFirstLetter from "../helpers/CapitilizeFirstLetter";
 import SpinningPokeballLoader from "../helpers/SpinningPokeballLoader";
 
-const Favorites = () => {
-  const { user } = useContext(PokemonContext);
+const GuestFavorites = () => {
+  const { favorite } = useContext(PokemonContext);
 
-  if (!user.favorites) {
+  if (!favorite) {
     return (
       <div className="flex justify-center items-center h-full">
         <SpinningPokeballLoader />
@@ -19,13 +19,12 @@ const Favorites = () => {
 
   return (
     <DefaultLayout>
-      
       <div className="flex items-start mt-4 w-full h-full">
-        {!user.favorites ? (
+        {!favorite ? (
           <div className="flex justify-center items-center w-full h-full">
             <SpinningPokeballLoader />
           </div>
-        ) : user.favorites.length === 0 ? (
+        ) : favorite.length === 0 ? (
           <div className="flex justify-center items-center w-full h-full">
             <div className="text-white text-lg text-center">
               You haven't added any favorites yet.
@@ -33,18 +32,18 @@ const Favorites = () => {
           </div>
         ) : (
           <ul className="flex items-center flex-wrap text-center p-2 m-2 gap-4">
-            {user.favorites.map((pokemon) => (
+            {favorite.map((pokemon) => (
               <li
-                key={pokemon.pokemonId}
+                key={pokemon.id}
                 className="relative m-2 w-36 p-4 px-4 cursor-pointer rounded-2xl border-2 border-gray-400 flex justify-center items-center flex-col flex-auto bg-opacity-25 text-white hover:bg-custom-gradient hover:text-black hover:scale-95 transition-all overflow-hidden hover:overflow-hidden"
               >
                 <Link to={`/pokedex/pokemon/${pokemon.name}`}>
                   <div className="border-2 p-1 px-2 flex flex-auto rounded-lg text-sm bg-gray-700 border-gray-700 text-white font-semibold absolute right-0 top-0 shadow-lg">
-                    #{pokemon.pokemonId}
+                    #{pokemon.id}
                   </div>
                   <ImageLoader
                     className="flex flex-1 mb-1"
-                    src={pokemon.spriteUrl}
+                    src={pokemon.sprites.front_default}
                     alt={pokemon.name}
                     Height={48}
                     Width={48}
@@ -62,4 +61,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export default GuestFavorites;

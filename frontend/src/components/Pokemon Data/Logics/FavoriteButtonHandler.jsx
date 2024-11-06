@@ -3,6 +3,7 @@ import { PokemonContext } from "../../States/StateContext";
 import FavoriteButton from "../Sub Layouts/FavoriteButton";
 import { toast } from "sonner";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import CapitilizeFirstLetter from "../../helpers/CapitilizeFirstLetter";
 
 const FavoriteButtonHandler = () => {
   const {
@@ -36,7 +37,10 @@ const FavoriteButtonHandler = () => {
         toast(
           <div className="flex items-center justify-center font-medium gap-2 bg-red-200 border-l-4 border-red-500 p-2.5 rounded-md text-red-700 shadow-md">
             <FaHeart className="text-red-500" />
-            <span>{response?.data?.message || "Added to favorites!"}</span>
+            <span>
+              {CapitilizeFirstLetter(response?.data?.message) ||
+                "Added to favorites!"}
+            </span>
           </div>,
           {
             style: {
@@ -51,7 +55,10 @@ const FavoriteButtonHandler = () => {
         toast(
           <div className="flex items-center justify-center gap-2 bg-gray-200 font-medium border-l-4 border-gray-500 p-2.5 rounded-md text-gray-700 shadow-md">
             <FaRegHeart className="text-gray-500" />
-            <span>{response?.data?.message || "Removed from favorites!"}</span>
+            <span>
+              {CapitilizeFirstLetter(response?.data?.message) ||
+                "Removed from favorites!"}
+            </span>
           </div>,
           {
             style: {

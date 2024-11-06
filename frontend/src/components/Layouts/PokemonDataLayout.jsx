@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { PokemonContext } from "../States/StateContext";
 import Image from "../Pokemon Data/Sub Layouts/Image";
 import FavoriteButtonHandler from "../Pokemon Data/Logics/FavoriteButtonHandler";
+import GuestFavoriteButtonHandler from "../Pokemon Data/Logics/GuestFavoriteButtonHandler";
 import ShinyButtonHandler from "../Pokemon Data/Logics/ShinyButtonHandler";
 import Name from "../Pokemon Data/Sub Layouts/Name";
 import TypesHandler from "../Pokemon Data/Logics/TypesHandler";
@@ -15,7 +16,7 @@ import FormsHandler from "../Pokemon Data/Logics/FormsHandler";
 import DefaultLayout from "./DefaultLayout";
 
 const PokemonDataLayout = () => {
-  const { pokemonInfo } = useContext(PokemonContext);
+  const { pokemonInfo, isGuest } = useContext(PokemonContext);
 
   return (
     <DefaultLayout>
@@ -30,7 +31,11 @@ const PokemonDataLayout = () => {
               {/* Section for Add to Favorites and Shiny Buttons */}
               <div className="flex items-center justify-center gap-8">
                 {/* Add-To-Favorites Button */}
-                <FavoriteButtonHandler />
+                {isGuest ? (
+                  <GuestFavoriteButtonHandler />
+                ) : (
+                  <FavoriteButtonHandler />
+                )}
 
                 {/* Shiny Button */}
                 <ShinyButtonHandler />

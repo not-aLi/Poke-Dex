@@ -3,13 +3,15 @@ import fire from "../../../assets/charmander.gif";
 import ghost from "../../../assets/gastly.gif";
 import Button from "../Button";
 import Loader from "../Loader";
-import pikachu from "../../../assets/pikachuRunning.gif"
+import pikachu from "../../../assets/pikachuRunning.gif";
 
 const ForgotPasswordLayout = ({
   email,
   handleEmail,
   handleReset,
   authLoading,
+  GuestAccount,
+  isGuest
 }) => {
   return (
     <div className="mt-2 mb-2">
@@ -30,7 +32,11 @@ const ForgotPasswordLayout = ({
         <div className="w-full flex flex-col gap-6 items-center justify-center my-6 ">
           {authLoading ? (
             <div className="w-full">
-              <Button color={"red"} img={fire} loading={<Loader img={pikachu}/>} />
+              <Button
+                color={"red"}
+                img={fire}
+                loading={<Loader img={pikachu} />}
+              />
             </div>
           ) : (
             <div onClick={handleReset} className="w-full">
@@ -39,7 +45,9 @@ const ForgotPasswordLayout = ({
           )}
 
           {/* Guest Button */}
-          <Button color={"purple"} img={ghost} text={"Continue as Guest"} />
+          <button onClick={GuestAccount} disabled={isGuest} className="w-full">
+            <Button color={"purple"} img={ghost} text={"Continue as Guest"} />
+          </button>
         </div>
       </div>
     </div>

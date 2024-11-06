@@ -6,12 +6,14 @@ import { Toaster } from "sonner";
 import FetchAllPokemon from "./components/API/FetchAllPokemon";
 import Routes from "./components/Routes/Routes";
 const MainContent = () => {
-  const { isAuthChecking, isAuthChecked, checkAuth } =
+  const { isAuthChecking, isAuthChecked, checkAuth, isGuest } =
     useContext(PokemonContext);
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
+  isGuest
+    ? null
+    : useEffect(() => {
+        checkAuth();
+      }, []);
   return (
     <>
       {isAuthChecking && !isAuthChecked ? (
@@ -24,7 +26,7 @@ const MainContent = () => {
       ) : (
         <>
           <Toaster richColors position="top-left" expand={true} />
-          <Routes />
+          <Routes isGuest={isGuest} />
           <FetchAllPokemon />
         </>
       )}

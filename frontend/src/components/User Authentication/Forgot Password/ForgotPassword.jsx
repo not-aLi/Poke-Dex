@@ -5,7 +5,8 @@ import { toast } from "sonner";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const { forgotPassword, authLoading } = useContext(PokemonContext);
+  const { forgotPassword, authLoading, GuestAccount, isGuest } =
+    useContext(PokemonContext);
 
   const handleEmail = (e) => {
     const inputValue = e.target.value;
@@ -18,7 +19,7 @@ const ForgotPassword = () => {
     try {
       const response = await forgotPassword(email);
       toast.success(response?.data?.message);
-      setEmail("")
+      setEmail("");
     } catch (error) {
       console.log(error.message);
       toast.error(error.message || "Error sending reset password email");
@@ -32,6 +33,8 @@ const ForgotPassword = () => {
         handleEmail={handleEmail}
         handleReset={handleReset}
         authLoading={authLoading}
+        GuestAccount={GuestAccount}
+        isGuest={isGuest}
       />
     </div>
   );

@@ -51,6 +51,7 @@ const About = () => {
               The{" "}
               <a
                 href="https://pokeapi.co/"
+                target="_blank"
                 className="text-blue-400 hover:text-blue-300"
               >
                 PokéAPI
@@ -83,8 +84,14 @@ const About = () => {
           <section>
             <h2 className="text-2xl font-semibold mb-2">Get in Touch</h2>
             <p className="leading-relaxed">
-              Please contact boya0350@gmail.com with any comments, questions, or
-              recommendations.
+              Please contact{" "}
+              <a
+                href="mailto:notalli.official@gmail.com?subject=Pokémon%20Pokedex%20Website%20Inquiry"
+                className="text-blue-400 hover:text-blue-300"
+              >
+                notalli.official@gmail.com
+              </a>{" "}
+              with any comments, questions, or recommendations.
             </p>
           </section>
         </div>

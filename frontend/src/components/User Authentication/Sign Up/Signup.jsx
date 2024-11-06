@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const { signup } = useContext(PokemonContext);
+  const { signup, GuestAccount } = useContext(PokemonContext);
   const [isShowing, setIsShowing] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [showValidation, setShowValidation] = useState(true);
@@ -85,6 +85,7 @@ const Signup = () => {
         showValidation={showValidation}
         isPasswordValid={isPasswordValid}
         isFocused={isFocused}
+        GuestAccount={GuestAccount}
         setIsFocused={setIsFocused}
         handleSignUp={handleSignUp}
         handleEmail={handleEmail}

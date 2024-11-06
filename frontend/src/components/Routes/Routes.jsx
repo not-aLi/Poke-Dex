@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "../Pages/HomePage";
 import Favorites from "../Pages/Favorites";
@@ -10,8 +10,10 @@ import OTP from "../User Authentication/Forgot Password/OTP/OTP";
 import ResetPassword from "../User Authentication/Forgot Password/Reset Password/ResetPassword";
 import ProtectedRoutes from "./ProtectedRoutes";
 import RedirectAuthenticatedUser from "./RedirectAuthenticatedUser";
+import GuestFavorites from "../Pages/GuestFavorites";
 
-const Routing = () => {
+
+const Routing = ({isGuest}) => {
   return (
     <div>
       <Routes>
@@ -59,7 +61,7 @@ const Routing = () => {
           path="/favorites"
           element={
             <ProtectedRoutes>
-              <Favorites />
+              {isGuest ? <GuestFavorites /> : <Favorites />}
             </ProtectedRoutes>
           }
         />

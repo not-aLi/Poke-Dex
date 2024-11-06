@@ -23,6 +23,7 @@ const SignupLayout = ({
   isFocused,
   setIsFocused,
   handleSignUp,
+  GuestAccount
 }) => {
   const { authLoading } = useContext(PokemonContext);
   return (
@@ -113,7 +114,9 @@ const SignupLayout = ({
         )}
 
         {/* Guest Button */}
+        <div onClick={GuestAccount} className="w-full">
         <Button color={"purple"} img={ghost} text={"Continue as Guest"} />
+        </div>
       </div>
     </div>
   );

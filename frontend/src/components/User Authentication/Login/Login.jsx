@@ -10,7 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const navigate = useNavigate();
-  const { login, authLoading } = useContext(PokemonContext);
+  const { login, authLoading, GuestAccount } = useContext(PokemonContext);
 
   const handleShowPassword = () => {
     setIsShowing(!isShowing);
@@ -49,6 +49,7 @@ const Login = () => {
         handlePassword={handlePassword}
         isShowing={isShowing}
         isFocused={isFocused}
+        GuestAccount={GuestAccount}
         setIsFocused={setIsFocused}
         handleShowPassword={handleShowPassword}
       />
