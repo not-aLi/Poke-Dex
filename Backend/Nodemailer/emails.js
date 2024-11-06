@@ -10,7 +10,7 @@ export const sendVerificationEmail = async (email, verificationToken) => {
 
   try {
     const res = await transport.sendMail({
-      sender: `"${sender.name}" <${sender.email}>`,
+      from: `"${sender.name}" <${sender.email}>`,
       to: recipient,
       subject: "Verify your email",
       html: VERIFICATION_EMAIL_TEMPLATE.replace(
@@ -30,7 +30,7 @@ export const sendResetPasswordEmail = async (email, resetPasswordUrl) => {
 
   try {
     const res = await transport.sendMail({
-      sender: `"${sender.name}" <${sender.email}>`,
+      from: `"${sender.name}" <${sender.email}>`,
       to: recipient,
       subject: "Reset Password",
       html: PASSWORD_RESET_REQUEST_TEMPLATE.replace(
@@ -49,7 +49,7 @@ export const sendResetPasswordSuccessEmail = async (email) => {
 
   try {
     const res = await transport.sendMail({
-      sender: `"${sender.name}" <${sender.email}>`,
+      from: `"${sender.name}" <${sender.email}>`,
       to: recipient,
       subject: "Reset Password",
       html: PASSWORD_RESET_SUCCESS_TEMPLATE,
