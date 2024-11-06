@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import pokeball from "../../../../assets/PokeballBg.png";
 import { motion } from "framer-motion";
 import Button from "../../Button";
