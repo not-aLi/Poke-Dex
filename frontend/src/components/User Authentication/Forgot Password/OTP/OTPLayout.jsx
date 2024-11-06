@@ -19,6 +19,13 @@ const OTPLayout = ({
   timer,
   formatTime,
 }) => {
+
+   useEffect(() => {
+    if (inputRefs.current[0]) {
+      inputRefs.current[0].focus();
+    }
+  }, [inputRefs]);
+  
   return (
     <div className="mx-auto px-6 bg-gradient-to-t from-gray-900/80 via-gray-900 to-gray-950/80 h-screen w-screen flex items-center justify-center">
       {/* Top Image */}
