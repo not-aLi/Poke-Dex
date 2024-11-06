@@ -32,7 +32,7 @@ const SearchBar_Mobile_Version = ({
               filteredSearch.map((poke, index) => (
                 <div key={index} onClick={handleCloseSearchBar}>
                   <Link
-                    to={`/pokemon/${poke.name}`}
+                    to={`/pokedex/pokemon/${poke.name}`}
                     className="flex justify-between items-center p-4 px-2 my-2 hover:bg-gray-700 cursor-pointer"
                   >
                     <p className=" text-slate-200 tracking-wide">

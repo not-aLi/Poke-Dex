@@ -2,8 +2,15 @@ import React from "react";
 import fire from "../../../assets/charmander.gif";
 import ghost from "../../../assets/gastly.gif";
 import Button from "../Button";
+import Loader from "../Loader";
+import pikachu from "../../../assets/pikachuRunning.gif"
 
-const ForgotPasswordLayout = ({ email, handleEmail }) => {
+const ForgotPasswordLayout = ({
+  email,
+  handleEmail,
+  handleReset,
+  authLoading,
+}) => {
   return (
     <div className="mt-2 mb-2">
       {/* Input Fields */}
@@ -16,12 +23,20 @@ const ForgotPasswordLayout = ({ email, handleEmail }) => {
           type="text"
           value={email}
           onChange={handleEmail}
-          className="w-full outline-none p-2 text-white border border-gray-600 rounded-md bg-gray-700  placeholder:text-zinc-500"
+          className="w-full outline-none focus:bg-red-100 focus:ring-2 focus:ring-red-400 focus:text-black focus:font-medium p-2 text-white border border-gray-600 rounded-md bg-gray-700  placeholder:text-zinc-500"
           placeholder="pokemon.master@example.com"
         />
         {/* Reset Password Button */}
         <div className="w-full flex flex-col gap-6 items-center justify-center my-6 ">
-          <Button color={"red"} img={fire} text={"Reset Password"} />
+          {authLoading ? (
+            <div className="w-full">
+              <Button color={"red"} img={fire} loading={<Loader img={pikachu}/>} />
+            </div>
+          ) : (
+            <div onClick={handleReset} className="w-full">
+              <Button color={"red"} img={fire} text={"Reset Password"} />
+            </div>
+          )}
 
           {/* Guest Button */}
           <Button color={"purple"} img={ghost} text={"Continue as Guest"} />

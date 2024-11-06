@@ -3,13 +3,21 @@ import pokeball from "../../../../assets/PokeballBg.png";
 import { motion } from "framer-motion";
 import Button from "../../Button";
 import pikachu from "../../../../assets/Pikachu.gif";
+import pikachuRun from "../../../../assets/pikachuRunning.gif";
+import Loader from "../../Loader";
 
 const OTPLayout = ({
   RotoatingImage,
   otp,
   inputRefs,
   handleChange,
+  handleConfirm,
   handleBackspace,
+  authLoading,
+  handleResend,
+  isResetDisabled,
+  timer,
+  formatTime,
 }) => {
   return (
     <div className="mx-auto px-6 bg-gradient-to-t from-gray-900/80 via-gray-900 to-gray-950/80 h-screen w-screen flex items-center justify-center">
@@ -78,13 +86,34 @@ const OTPLayout = ({
           ))}
         </div>
 
-        <div className="flex w-full items-center justify-center px-8 pb-6">
-          <Button
-            color={"yellow"}
-            img={pikachu}
-            text={"Confirm"}
-            txtColor={"black"}
-          />
+        <div
+          onClick={handleConfirm}
+          className="flex w-full items-center justify-center px-8 pb-6"
+        >
+          {authLoading ? (
+            <Button color={"yellow"} img={pikachu} loading={<Loader img={pikachuRun}/>} />
+          ) : (
+            <Button
+              color={"yellow"}
+              img={pikachu}
+              text={"Confirm"}
+              txtColor={"black"}
+            />
+          )}
+        </div>
+
+        {/* Resend  */}
+        <div className="flex text-white items-center justify-center gap-1 text-sm mb-4">
+          Didn't receive the code?{" "}
+          <button
+            onClick={handleResend}
+            disabled={isResetDisabled}
+            className={`text-yellow-400 border-b border-transparent ${
+              isResetDisabled ? "" : "hover:border-yellow-400"
+            } transition-all`}
+          >
+            {isResetDisabled ? formatTime(timer) : " Resend OTP"}
+          </button>
         </div>
       </motion.div>
     </div>

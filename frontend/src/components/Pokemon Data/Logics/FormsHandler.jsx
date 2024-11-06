@@ -22,7 +22,7 @@ const renderForms = (species, currentPokemonName) => {
           const pokemon = allPokemons.find((poke) => poke.name === variety.pokemon.name);
 
           return pokemon ? (
-            <Link key={index} to={`/pokemon/${variety.pokemon.name}`}>
+            <Link key={index} to={`/pokedex/pokemon/${variety.pokemon.name}`}>
               <div className="flex flex-col items-center space-y-2 m-2">
                 <ImageLoader
                   src={pokemon.sprites.other.showdown.front_default}

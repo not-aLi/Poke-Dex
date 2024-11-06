@@ -22,7 +22,7 @@ const EvolutionChainHandler = () => {
     return (
       <div className="flex items-center">
         {pokemon && (
-          <Link to={`/pokemon/${chain.species.name}`}>
+          <Link to={`/pokedex/pokemon/${chain.species.name}`}>
             <div className="flex flex-col items-center space-y-2">
               <ImageLoader
                 src={pokemon.sprites.other.showdown.front_default}

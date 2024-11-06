@@ -4,6 +4,8 @@ import Logo from "./Logo";
 import Nav from "./Nav";
 import SearchButton from "./Search Bar/SearchButton";
 import { PokemonContext } from "../States/StateContext";
+import snorlax from "../../assets/snorlax.png";
+import pikachu from "../../assets/pikachuGuestAvatar.png";
 
 export default function Header() {
   const {
@@ -11,12 +13,19 @@ export default function Header() {
     setSearchBarVisibility,
     searchBarVisibility,
     setSearchInput,
+    isGuest,
+    isLogoutOpen,
+    setLogoutOpen,
   } = useContext(PokemonContext);
 
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const avatarToggle = () => {
+    setLogoutOpen(!isLogoutOpen);
   };
 
   /**
@@ -28,8 +37,8 @@ export default function Header() {
   };
 
   return (
-    <div className="sticky top-0 z-30 overflow-hidden ">
-      <nav className=" bg-gray-800 shadow-xl p-0 w-screen">
+    <div className="sticky top-0 z-30 overflow-hidden">
+      <nav className=" bg-gray-800 shadow-xl p-0 w-screen ">
         {!loading ? (
           <div className="flex flex-col md:flex-row md:mx-auto md:justify-between md:items-center">
             <button
@@ -55,9 +64,24 @@ export default function Header() {
               <Nav />
             </div>
 
-            {/* Search Bar */}
-            <div className="z-30">
-              <SearchButton showSearchBar={toggleSearch} />
+            {/* Search Bar and User Avatar*/}
+            <div className="flex items-center justify-center">
+              {/* Search Bar */}
+              <div className="z-30">
+                <SearchButton showSearchBar={toggleSearch} />
+              </div>
+
+              {/* User Avatar */}
+              <button
+                onClick={avatarToggle}
+                className="hidden md:flex mr-10 hover:bg-opacity-75 hover:rounded-full hover:transition-all hover:bg-white p-1 justify-center items-center"
+              >
+                {isGuest ? (
+                  <img src={pikachu} alt="pikachu" className="size-8" />
+                ) : (
+                  <img src={snorlax} alt="snorlax" className="size-8" />
+                )}
+              </button>
             </div>
           </div>
         ) : null}

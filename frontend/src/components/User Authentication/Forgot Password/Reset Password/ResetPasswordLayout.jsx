@@ -3,7 +3,9 @@ import pokeball from "../../../../assets/PokeballBg.png";
 import { motion } from "framer-motion";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 import fairy from "../../../../assets/clefairy.gif";
+import pikachu from "../../../../assets/pikachuRunning.gif";
 import Button from "../../Button";
+import Loader from "../../Loader";
 
 const ResetPasswordLayout = ({
   isNewShowing,
@@ -14,6 +16,12 @@ const ResetPasswordLayout = ({
   handleConfirmPassword,
   handleShowNewPassword,
   handleShowConfirmPassword,
+  handleResetPassword,
+  isNewPasswordValid,
+  isConfirmPasswordValid,
+  authLoading,
+  setFocused,
+  isFocused,
 }) => {
   const RotoatingImage = () => ({
     inital: { rotate: 0 },
@@ -84,14 +92,26 @@ const ResetPasswordLayout = ({
               type={isNewShowing ? "text" : "password"}
               value={newPassword}
               onChange={handleNewPassword}
-              className="w-full outline-none p-2 pr-10 text-white border border-gray-600 rounded-md bg-gray-700 placeholder:text-zinc-500"
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+              className={`w-full outline-none ${
+                !isNewPasswordValid
+                  ? "bg-red-100 border-2 border-red-500 text-black"
+                  : "focus:bg-pink-100 focus:ring-2 focus:ring-pink-500 focus:text-black"
+              } outline-none p-2 border border-gray-600 rounded-md ${
+                !isNewPasswordValid ? "" : "text-white"
+              } bg-gray-700 placeholder:text-zinc-500 focus:font-medium`}
               placeholder="Must have at least 6 characters"
             />
 
             {/* Eye Icon */}
             <button
               onClick={handleShowNewPassword}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-300 cursor-pointer hover:text-zinc-400 transition"
+              className={`absolute right-3 top-1/2 transform -translate-y-1/2 ${
+                isFocused
+                  ? "text-zinc-500 hover:text-zinc-600"
+                  : "text-zinc-400 hover:text-zinc-500"
+              } cursor-pointer  transition`}
             >
               {isNewShowing ? (
                 <RiEyeCloseLine size={20} />
@@ -108,14 +128,26 @@ const ResetPasswordLayout = ({
               type={isConfirmShowing ? "text" : "password"}
               value={confirmPassword}
               onChange={handleConfirmPassword}
-              className="w-full outline-none p-2 pr-10 text-white border border-gray-600 rounded-md bg-gray-700 placeholder:text-zinc-500"
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+              className={`w-full outline-none ${
+                !isConfirmPasswordValid
+                  ? "bg-red-100 border-2 border-red-500 text-black"
+                  : "focus:bg-pink-100 focus:ring-2 focus:ring-pink-500 focus:text-black"
+              } outline-none p-2 border border-gray-600 rounded-md ${
+                !isConfirmPasswordValid ? "" : "text-white"
+              } bg-gray-700 placeholder:text-zinc-500 focus:font-medium`}
               placeholder="Must have at least 6 characters"
             />
 
             {/* Eye Icon */}
             <button
               onClick={handleShowConfirmPassword}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-300 cursor-pointer hover:text-zinc-400 transition"
+              className={`absolute right-3 top-1/2 transform -translate-y-1/2 ${
+                isFocused
+                  ? "text-zinc-500 hover:text-zinc-600"
+                  : "text-zinc-400 hover:text-zinc-500"
+              } cursor-pointer  transition`}
             >
               {isConfirmShowing ? (
                 <RiEyeCloseLine size={20} />
@@ -126,8 +158,19 @@ const ResetPasswordLayout = ({
           </div>
         </div>
         {/* Login Button */}
-        <div className="w-full flex items-center justify-center my-6 px-4">
-          <Button color={"pink"} img={fairy} text={"Reset Password"} />
+        <div className="w-full">
+          {authLoading ? (
+            <div className="w-full flex items-center justify-center my-6 px-4">
+              <Button color={"pink"} img={fairy} loading={<Loader img={pikachu}/>} />
+            </div>
+          ) : (
+            <div
+              onClick={handleResetPassword}
+              className="w-full flex items-center justify-center my-6 px-4"
+            >
+              <Button color={"pink"} img={fairy} text={"Reset Password"} />
+            </div>
+          )}
         </div>
       </motion.div>
     </div>
