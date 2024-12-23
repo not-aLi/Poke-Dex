@@ -2,7 +2,25 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import FetchAllPokemon from "./FetchAllPokemonForSearchResults";
 import { PokemonContext } from "../States/StateContext";
+import {useQuery} from "@tanstack/react-query";
 
+
+const fetchPokemon=async(url)=>{
+  let response = await axios.get(url);
+      let pokemons = response.data.results;
+      let pokeInformation = await Promise.all(
+        pokemons.map((poke) =>
+          axios.get(poke.url).then((response) => response.data)
+        )
+      );
+      return{
+        pokemon: pokeInformation,
+        nextUrl: response.data.next,
+        previousUrl: response.data.previous,
+        totalPokemonCount: response.data.count,
+      };
+
+};
 const FetchPokemon = () => {
   const {
     setPokemon,
@@ -13,30 +31,26 @@ const FetchPokemon = () => {
     setTotalPokemonCount,
   } = useContext(PokemonContext);
 
-  const getPokemon = async () => {
-    try {
-      setLoading(true);
-      let response = await axios.get(url);
-      let pokemons = response.data.results;
-      let pokeInformation = await Promise.all(
-        pokemons.map((poke) =>
-          axios.get(poke.url).then((response) => response.data)
-        )
-      );
-      setPokemon(pokeInformation);
-      setNextUrl(response.data.next);
-      setPreviousUrl(response.data.previous);
-      setTotalPokemonCount(response.data.count);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
+  const {isLoading,data} = useQuery({
+    queryKey:['Pokemon',url],
+    queryFn:()=>fetchPokemon(url),
+    keepPreviousData:true,
+
+  })
+
+ useEffect(() => {
+    if (data) {
+      setPokemon(data.pokemon);
+      setNextUrl(data.nextUrl);
+      setPreviousUrl(data.previousUrl);
+      setTotalPokemonCount(data.totalPokemonCount);
     }
-  };
+  }, [data, setPokemon, setNextUrl, setPreviousUrl, setTotalPokemonCount]);
 
   useEffect(() => {
-    getPokemon();
-  }, [url]);
+    setLoading(isLoading);
+  }, [isLoading, setLoading]);
+
 
   return (
     <div>

@@ -310,7 +310,6 @@ const PokemonProvider = ({ children }) => {
         setUrl,
         isAuthChecked,
         isAuthChecking,
-        isAuthenticated,
         searchBarVisibility,
         setSearchBarVisibility,
         totalPokemonCount,
