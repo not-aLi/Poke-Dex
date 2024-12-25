@@ -3,8 +3,10 @@ import React, { useContext, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { PokemonContext } from "../States/StateContext";
 
-const fetchPokemonData = async () => {
-  const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
+const fetchPokemonData = async (setAllPokemons) => {
+  const response = await axios.get(
+    "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
+  );
   const pokemons = response.data.results;
 
   const batchSize = 50;
@@ -18,21 +20,21 @@ const fetchPokemonData = async () => {
       )
     );
     allPokemonData = [...allPokemonData, ...batchDetails];
+    setAllPokemons(allPokemonData);
   }
 
-  return allPokemonData; 
+  return allPokemonData;
 };
 
 function FetchAllPokemon() {
-  const { setAllPokemons, setFetching } = useContext(PokemonContext);
+  const { setAllPokemons, setFetching, allPokemons } =
+    useContext(PokemonContext);
 
-  const { data, isFetching } = useQuery({
-    queryKey:["Pokemon"], 
-    queryFn:fetchPokemonData, 
-    
-      staleTime: 1000 * 60 * 10, 
-    }
-);
+  const { data, isFetching, isLoading } = useQuery({
+    queryKey: ["Pokemon"],
+    queryFn: () => fetchPokemonData(setAllPokemons),
+    staleTime: 1000 * 60 * 10,
+  });
 
   useEffect(() => {
     if (data) {
@@ -43,12 +45,12 @@ function FetchAllPokemon() {
   useEffect(() => {
     if (isFetching) {
       setFetching(true);
-    }else{
-      setFetching(false)
+    } else {
+      setFetching(false);
     }
-  }, [isFetching]);
+  }, [isFetching, setFetching]);
 
-  return null; 
+  return null;
 }
 
 export default FetchAllPokemon;
