@@ -1,19 +1,23 @@
 import React, { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../Pages/HomePage";
-import Favorites from "../Pages/Favorites";
 import NotFound from "./NotFound";
-import PokemonDataPage from "../Pages/PokemonDataPage";
-import About from "../Pages/About";
 import Authentication from "../User Authentication/Authentication";
 import OTP from "../User Authentication/Forgot Password/OTP/OTP";
 import ResetPassword from "../User Authentication/Forgot Password/Reset Password/ResetPassword";
 import ProtectedRoutes from "./ProtectedRoutes";
 import RedirectAuthenticatedUser from "./RedirectAuthenticatedUser";
-import GuestFavorites from "../Pages/GuestFavorites";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import { lazy, Suspense } from "react";
+import SpinningPokeballLoader from "../helpers/SpinningPokeballLoader";
 
+const HomePage = lazy(() => import("../Pages/HomePage"));
+const PokemonDataPage = lazy(() => import("../Pages/PokemonDataPage"));
+const Favorites = lazy(() => import("../Pages/Favorites"));
+const About = lazy(() => import("../Pages/About"));
+const GuestFavorites = lazy(() => import("../Pages/GuestFavorites"));
 
-const Routing = ({isGuest}) => {
+const Routing = ({ isGuest }) => {
   return (
     <div>
       <Routes>
@@ -45,7 +49,21 @@ const Routing = ({isGuest}) => {
           path="/pokedex"
           element={
             <ProtectedRoutes>
-              <HomePage />
+              <Suspense
+                fallback={
+                  <Backdrop
+                    sx={{
+                      color: "#fff",
+                      zIndex: (theme) => theme.zIndex.drawer + 1,
+                    }}
+                    open
+                  >
+                    <CircularProgress color="inherit" />
+                  </Backdrop>
+                }
+              >
+                <HomePage />
+              </Suspense>
             </ProtectedRoutes>
           }
         />
@@ -53,7 +71,9 @@ const Routing = ({isGuest}) => {
           path="/pokedex/pokemon/:name"
           element={
             <ProtectedRoutes>
-              <PokemonDataPage />
+              <Suspense fallback={<SpinningPokeballLoader />}>
+                <PokemonDataPage />
+              </Suspense>
             </ProtectedRoutes>
           }
         />
@@ -61,7 +81,9 @@ const Routing = ({isGuest}) => {
           path="/favorites"
           element={
             <ProtectedRoutes>
-              {isGuest ? <GuestFavorites /> : <Favorites />}
+              <Suspense fallback={<SpinningPokeballLoader />}>
+                {isGuest ? <GuestFavorites /> : <Favorites />}
+              </Suspense>
             </ProtectedRoutes>
           }
         />
@@ -69,7 +91,9 @@ const Routing = ({isGuest}) => {
           path="/about"
           element={
             <ProtectedRoutes>
-              <About />
+              <Suspense fallback={<SpinningPokeballLoader />}>
+                <About />
+              </Suspense>
             </ProtectedRoutes>
           }
         />

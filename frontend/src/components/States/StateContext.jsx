@@ -9,6 +9,7 @@ const PokemonProvider = ({ children }) => {
   const API_URL = "https://poke-dex-dfe6.onrender.com/api/auth";
   const [pokemon, setPokemon] = useState([]);
   const [user, setUser] = useState([]);
+  const [fetching, setFetching] = useState(false);
   const [allPokemons, setAllPokemons] = useState([]);
   const [pokemonInfo, setPokemonInfo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -351,6 +352,8 @@ const PokemonProvider = ({ children }) => {
         logout,
         isGuest,
         GuestAccount,
+        setFetching,
+        fetching
       }}
     >
       {children}

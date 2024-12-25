@@ -48,7 +48,7 @@ const FetchPokemon = () => {
   }, [data, setPokemon, setNextUrl, setPreviousUrl, setTotalPokemonCount]);
 
   useEffect(() => {
-    setLoading(isLoading);
+    setLoading(isLoading );
   }, [isLoading, setLoading]);
 
 

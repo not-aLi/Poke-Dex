@@ -6,6 +6,7 @@ import SearchButton from "./Search Bar/SearchButton";
 import { PokemonContext } from "../States/StateContext";
 import snorlax from "../../assets/snorlax.png";
 import pikachu from "../../assets/pikachuGuestAvatar.png";
+import SpinningPokeball from "../helpers/SpinningPokeball";
 
 export default function Header() {
   const {
@@ -16,6 +17,7 @@ export default function Header() {
     isGuest,
     isLogoutOpen,
     setLogoutOpen,
+    fetching,
   } = useContext(PokemonContext);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +40,7 @@ export default function Header() {
 
   return (
     <div className="sticky top-0 z-30 overflow-hidden">
-      <nav className=" bg-gray-800 shadow-xl p-0 w-screen ">
+      <nav className="bg-gray-800 shadow-xl p-0 w-screen">
         {!loading ? (
           <div className="flex flex-col md:flex-row md:mx-auto md:justify-between md:items-center">
             <button
@@ -64,7 +66,7 @@ export default function Header() {
               <Nav />
             </div>
 
-            {/* Search Bar and User Avatar*/}
+            {/* Search Bar and User Avatar */}
             <div className="flex items-center justify-center">
               {/* Search Bar */}
               <div className="z-30">
@@ -74,7 +76,9 @@ export default function Header() {
               {/* User Avatar */}
               <button
                 onClick={avatarToggle}
-                className={`hidden md:flex mr-10 hover:bg-opacity-75 hover:rounded-full hover:transition-all hover:bg-white ${isGuest?"p-2":"p-1"} justify-center items-center`}
+                className={`hidden md:flex mr-10 hover:bg-opacity-75 hover:rounded-full hover:transition-all hover:bg-white ${
+                  isGuest ? "p-2" : "p-1"
+                } justify-center items-center`}
               >
                 {isGuest ? (
                   <img src={pikachu} alt="pikachu" className="size-8" />
@@ -83,8 +87,18 @@ export default function Header() {
                 )}
               </button>
             </div>
+
+            {/* Fetching data message */}
           </div>
         ) : null}
+        {!loading && fetching && (
+          <div className="flex items-center justify-center bg-gray-600 text-white text-sm py-1 mt-2">
+            <SpinningPokeball />
+            <span className="ml-2 text-sm">
+              Data is loading, which may cause temporary slowness.
+            </span>
+          </div>
+        )}
       </nav>
     </div>
   );

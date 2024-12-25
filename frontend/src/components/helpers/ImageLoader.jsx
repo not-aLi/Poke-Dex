@@ -20,7 +20,7 @@ loading an image. */
           style={{ height: `${Height}px`, width: `${Width}px` }}
         ></div>
       ) : (
-        <img src={src} alt={alt} className="flex items-center" style={{height: `${h}px`, width: `${w}px`}} />
+        <img src={src} alt={alt} loading="lazy" className="flex items-center" style={{height: `${h}px`, width: `${w}px`}} />
       )}
     </div>
   );

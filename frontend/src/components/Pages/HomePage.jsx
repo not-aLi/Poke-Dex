@@ -4,12 +4,14 @@ import PokemonList from "../Layouts/PokemonListLayout";
 import UpdatePokemonCount from "../Pokemon Count/UpdatePokemonCount";
 import DefaultLayout from "../Layouts/DefaultLayout";
 import { PokemonContext } from "../States/StateContext";
+import FetchPokemon from "../API/FetchAllPokemon";
 
 const HomePage = () => {
   return (
     <DefaultLayout>
       <DisplayCount />
       <PokemonList />
+      <FetchPokemon/>
       <UpdatePokemonCount />
     </DefaultLayout>
   );
